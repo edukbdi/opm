@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Musuh yang Tak Terlihat: Mengapa Peluru Tak Menyelesaikan Papua | KBDI</title>
+ <meta name="description" content="Banyak yang yakin OPM bisa dibantai habis jika TNI tak dibatasi HAM. Tapi sejarah perang gerilya membuktikan sebaliknya, kekuatan senjata bukan jawaban, dan justru memperpanjang konflik." />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+   --bg: #0b0e0f; --bg2: #11161a; --surface: #161c20; --surface2: #1d262b;
+   --border: #283238; --text: #e4e8e6; --text-muted: #8a9690; --text-dim: #4f5a5e;
+   --accent: #6fa8a0; --accent-soft: rgba(111,168,160,0.12);
+   --blood: #a8533f; --blood-soft: rgba(168,83,63,0.12);
+   --fire-core: #ffd24a; --fire-mid: #ff8a2b; --fire-deep: #ef4f1c;
+   --fog: rgba(210,224,222,0.10);
+   --font-display: 'Bebas Neue', sans-serif;
+   --font-serif: 'Playfair Display', serif;
+   --font-body: 'Source Serif 4', serif;
+   --font-ui: 'DM Sans', sans-serif;
+   --radius: 4px; --radius-lg: 8px; --max-w: 780px;
+
+   /* SVG ridge layers (dark) */
+   --sky-top: #10171a; --sky-bot: #070a0b;
+   --ridge1: #1b2a2c; --ridge2: #16242a; --ridge3: #111d22; --ridge4: #0d161b; --ridge5: #0a1014;
+   --svg-fog: rgba(180,205,202,0.16);
+   --svg-figure: rgba(120,140,138,0.5);
+   --svg-heli: #cdd8d4;
+  }
+  html.light {
+   --bg: #e7ece9; --bg2: #dee4e0; --surface: #d4dbd6; --surface2: #c9d2cc;
+   --border: #b2bdb6; --text: #18201d; --text-muted: #556059; --text-dim: #8a948d;
+   --accent: #3f7269; --accent-soft: rgba(63,114,105,0.10);
+   --blood: #8f4031; --blood-soft: rgba(143,64,49,0.08);
+   --fire-core: #ffb300; --fire-mid: #f4711c; --fire-deep: #d83f12;
+   --fog: rgba(255,255,255,0.5);
+
+   --sky-top: #c6d4cf; --sky-bot: #aebfb8;
+   --ridge1: #9fb3ac; --ridge2: #8ba39b; --ridge3: #76918a; --ridge4: #62807a; --ridge5: #4f6e68;
+   --svg-fog: rgba(255,255,255,0.55);
+   --svg-figure: rgba(40,55,52,0.45);
+   --svg-heli: #2c3a36;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 18px; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: flex-end; overflow: hidden; background: var(--sky-bot); }
+  .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+  .hero-svg svg { width: 100%; height: 100%; display: block; }
+  .hero::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+   background: linear-gradient(178deg, rgba(7,10,11,0) 30%, rgba(7,10,11,0.55) 68%, rgba(7,10,11,0.92) 100%); }
+  html.light .hero::after { background: linear-gradient(178deg, rgba(231,236,233,0) 34%, rgba(231,236,233,0.5) 70%, rgba(231,236,233,0.9) 100%); }
+
+  .hero-content { position: relative; z-index: 3; padding: clamp(40px,8vw,86px) clamp(20px,6vw,80px) clamp(46px,8vw,72px); max-width: 880px; animation: fadeUp 1.1s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
+  .hero-eyebrow-line { width: 38px; height: 2px; background: var(--accent); flex-shrink: 0; }
+  .hero-title { font-family: var(--font-display); line-height: .9; margin-bottom: 22px; }
+  .hero-title .l1 { display: block; font-size: clamp(56px,11vw,128px); color: var(--text); letter-spacing: .015em; }
+  .hero-title .l2 { display: block; font-size: clamp(56px,11vw,128px); color: var(--accent); letter-spacing: .015em; }
+  .hero-sub { font-family: var(--font-body); font-style: italic; font-size: clamp(15px,2.1vw,20px); color: var(--text-muted); line-height: 1.7; max-width: 560px; margin-bottom: 30px; }
+  .hero-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .hero-pill { padding: 5px 14px; border: 1px solid var(--border); border-radius: 20px; font-family: var(--font-ui); font-size: 11px; font-weight: 500; letter-spacing: .04em; color: var(--text-muted); }
+  .hero-pill.accent { border-color: rgba(111,168,160,.45); color: var(--accent); }
+  html.light .hero-pill.accent { border-color: rgba(63,114,105,.5); }
+
+  .scroll-hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: var(--font-ui); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim); }
+  .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { opacity: .25; } 50% { opacity: .9; } }
+
+  /* ============ ARTICLE ============ */
+  main { padding-top: 0; padding-bottom: 80px; }
+  .article-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(16px,5vw,40px); }
+  .section { padding: clamp(34px,6vw,58px) 0 0; scroll-margin-top: 80px; }
+
+  .section-num { font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .section-title { font-family: var(--font-serif); font-size: clamp(23px,3.6vw,33px); font-weight: 700; line-height: 1.24; color: var(--text); margin-bottom: 24px; }
+
+  .prose p { margin-bottom: 22px; font-size: clamp(16px,2vw,18px); line-height: 1.85; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 600; color: var(--text); }
+  .prose em { font-style: italic; color: var(--text-muted); }
+
+  /* ===== FOG DIVIDER (signature) ===== */
+  .fog-div { margin: 52px 0 44px; display: flex; align-items: center; gap: 16px; opacity: .9; }
+  .fog-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border) 30%, var(--accent)); }
+  .fog-line.rev { background: linear-gradient(270deg, transparent, var(--border) 30%, var(--accent)); }
+  .fog-glyph { flex-shrink: 0; opacity: .8; }
+  .fog-glyph svg { display: block; }
+
+  /* ===== PULL QUOTE ===== */
+  .pull-quote { margin: 40px -14px; padding: 26px 32px; border-top: 2px solid var(--accent); border-bottom: 1px solid var(--border); font-family: var(--font-serif); font-style: italic; font-size: clamp(17px,2.5vw,22px); color: var(--text); line-height: 1.6; position: relative; }
+  .pull-quote::before { content: '\201C'; position: absolute; top: -14px; left: 24px; font-size: 64px; color: var(--accent); line-height: 1; font-family: var(--font-serif); opacity: .35; }
+
+  /* ===== STAT CARDS ===== */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 14px; margin: 34px 0; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 16px; text-align: center; transition: border-color .3s, transform .3s; position: relative; overflow: hidden; }
+  .stat-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity .3s; }
+  .stat-card:hover { border-color: rgba(111,168,160,.4); transform: translateY(-3px); }
+  .stat-card:hover::after { opacity: 1; }
+  .stat-card-num { font-family: var(--font-display); font-size: clamp(30px,5vw,46px); color: var(--accent); line-height: 1; margin-bottom: 8px; }
+  .stat-card-num.blood { color: var(--blood); }
+  .stat-card-label { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ===== STAT BLOCK ===== */
+  .stat-block { margin: 40px 0; padding: 26px 30px; background: var(--surface); border-left: 4px solid var(--blood); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; position: relative; overflow: hidden; }
+  .stat-block::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--blood-soft), transparent 55%); pointer-events: none; }
+  .stat-number { font-family: var(--font-display); font-size: clamp(34px,7vw,60px); color: var(--blood); line-height: 1; margin-bottom: 6px; position: relative; }
+  .stat-label { font-family: var(--font-ui); font-size: 13px; color: var(--text-muted); letter-spacing: .04em; position: relative; }
+  .stat-source { font-family: var(--font-ui); font-size: 11px; color: var(--text-dim); margin-top: 8px; position: relative; }
+
+  /* ===== NOTE / DISCLAIMER BOX ===== */
+  .note-box { margin: 34px 0; padding: 20px 24px; background: var(--accent-soft); border: 1px solid rgba(111,168,160,.4); border-radius: var(--radius-lg); font-family: var(--font-ui); font-size: 14px; color: var(--text-muted); line-height: 1.75; position: relative; }
+  html.light .note-box { border-color: rgba(63,114,105,.45); }
+  .note-box-label { display: flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 11px; }
+  .note-box-label::after { content: ''; flex: 1; height: 1px; background: rgba(111,168,160,.3); }
+  .note-box strong { color: var(--text); }
+
+  /* ===== COMPARE TABLE ===== */
+  .compare-wrap { overflow-x: auto; margin: 32px 0; }
+  .compare-table { width: 100%; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); border-collapse: collapse; }
+  .compare-table th, .compare-table td { padding: 12px 14px; font-family: var(--font-ui); font-size: 13px; line-height: 1.5; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table thead th { background: var(--surface2); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .compare-table tbody tr:hover { background: var(--surface); }
+  .c-aspect { color: var(--text-muted); font-weight: 600; font-size: 12px; width: 26%; }
+  .c-aceh { color: var(--accent); }
+  .c-papua { color: var(--blood); }
+
+  /* ===== INSURGENT MATH SVG ===== */
+  .math-wrap { margin: 34px 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 22px 18px; }
+  .math-wrap svg { width: 100%; height: auto; display: block; }
+  .math-caption { text-align: center; font-family: var(--font-ui); font-size: 12px; color: var(--text-dim); margin-top: 14px; font-style: italic; line-height: 1.6; }
+
+  /* ===== SOLUTION COLUMNS ===== */
+  .roadmap { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; margin: 30px 0; }
+  .rm-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 20px; position: relative; overflow: hidden; }
+  .rm-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--accent); }
+  .rm-num { font-family: var(--font-display); font-size: 26px; color: var(--accent); opacity: .5; line-height: 1; margin-bottom: 8px; }
+  .rm-title { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 7px; line-height: 1.3; }
+  .rm-desc { font-family: var(--font-ui); font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  .actor-block { margin: 26px 0; }
+  .actor-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .actor-tag { font-family: var(--font-ui); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); padding: 6px 14px; border: 1px solid rgba(111,168,160,.45); border-radius: 4px; }
+  html.light .actor-tag { border-color: rgba(63,114,105,.5); }
+  .actor-line { flex: 1; height: 1px; background: var(--border); }
+  .action-item { display: flex; gap: 13px; align-items: flex-start; padding: 13px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 9px; transition: border-color .3s, transform .3s; }
+  .action-item:hover { border-color: rgba(111,168,160,.4); transform: translateX(3px); }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 8px; flex-shrink: 0; }
+  .action-text { font-family: var(--font-ui); font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .action-text strong { color: var(--text); font-weight: 600; }
+
+  /* ===== CLOSING ===== */
+  .closing { margin: 50px 0 0; padding: 42px 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); text-align: center; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, var(--accent-soft), transparent 65%); pointer-events: none; }
+  .closing-title { font-family: var(--font-display); font-size: clamp(26px,5.5vw,52px); color: var(--accent); line-height: 1; margin-bottom: 18px; position: relative; }
+  .closing-body { font-family: var(--font-body); font-style: italic; font-size: clamp(15px,2vw,18px); color: var(--text-muted); line-height: 1.8; max-width: 540px; margin: 0 auto; position: relative; }
+
+  /* ===== SOURCES ===== */
+  .sources { margin: 52px 0 0; padding-top: 30px; border-top: 1px solid var(--border); }
+  .sources-title { font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+  .source-item { font-family: var(--font-ui); font-size: 12px; color: var(--text-dim); padding: 7px 0; border-bottom: 1px solid var(--border); line-height: 1.55; }
+  .source-item:last-child { border-bottom: none; }
+  .source-item em { color: var(--text-muted); font-style: italic; }
+
+  /* ===== REVEAL ===== */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+   .reveal { opacity: 1; transform: none; transition: none; }
+   .hero-content { animation: none; }
+   .scroll-line { animation: none; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+   .hero { min-height: 100svh; }
+   .scroll-hint { display: none; }
+   .pull-quote { margin: 28px 0; padding: 22px 18px; }
+   .pull-quote::before { font-size: 50px; top: -11px; left: 12px; }
+   .compare-table th, .compare-table td { padding: 9px 10px; font-size: 12px; }
+   .c-aspect { width: 30%; }
+  }
+  @media (max-width: 480px) {
+   .hero-content { padding: 30px 16px 40px; }
+   .article-wrap { padding: 0 16px; }
+   .roadmap { grid-template-columns: 1fr; }
+  }
+ </style>
+</head>
+<body>
+
+<!-- ============ HERO: PUNGGUNG BUKIT BERKABUT ============ -->
+<div class="hero">
+ <div class="hero-svg" aria-hidden="true">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+     <stop offset="0%" style="stop-color:var(--sky-top)"/>
+     <stop offset="100%" style="stop-color:var(--sky-bot)"/>
+    </linearGradient>
+    <radialGradient id="haze" cx="50%" cy="30%" r="65%">
+     <stop offset="0%" style="stop-color:var(--svg-fog)" stop-opacity="0.42"/>
+     <stop offset="100%" style="stop-color:var(--svg-fog)" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="20"/></filter>
+    <filter id="grain">
+     <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+     <feColorMatrix type="saturate" values="0"/>
+    </filter>
+   </defs>
+
+   <!-- backdrop -->
+   <rect width="1440" height="900" fill="url(#sky)"/>
+   <rect width="1440" height="900" fill="url(#haze)"/>
+
+   <!-- misty forest canopy -->
+   <path style="fill:var(--ridge3)" d="M-10 560 L60 520 L130 560 L200 522 L270 560 L340 518 L410 560 L480 524 L550 560 L620 520 L690 560 L760 522 L830 560 L900 518 L970 560 L1040 524 L1110 560 L1180 520 L1250 560 L1320 522 L1390 560 L1450 560 L1450 900 L-10 900 Z"/>
+   <ellipse cx="720" cy="548" rx="900" ry="40" style="fill:var(--svg-fog)" filter="url(#soft)" opacity="0.5">
+    <animateTransform attributeName="transform" type="translate" values="-40 0; 40 0; -40 0" dur="30s" repeatCount="indefinite"/>
+   </ellipse>
+   <path style="fill:var(--ridge4)" d="M-10 600 L50 560 L110 600 L170 562 L230 600 L290 558 L350 600 L410 562 L470 600 L530 560 L590 600 L650 562 L710 600 L770 558 L830 600 L890 562 L950 600 L1010 560 L1070 600 L1130 562 L1190 600 L1250 558 L1310 600 L1370 562 L1430 600 L1450 600 L1450 900 L-10 900 Z"/>
+
+   <!-- hidden figures in the canopy (undetected) -->
+   <g style="fill:var(--svg-figure)" opacity="0.55">
+    <g transform="translate(470 604) scale(1.6)"><circle cx="0" cy="0" r="5"/><path d="M-4 7 Q0 5 4 7 L3 24 L-3 24 Z"/></g>
+    <g transform="translate(910 600) scale(1.4)"><circle cx="0" cy="0" r="5"/><path d="M-4 7 Q0 5 4 7 L3 24 L-3 24 Z"/></g>
+    <g transform="translate(1180 606) scale(1.3)"><circle cx="0" cy="0" r="5"/><path d="M-4 7 Q0 5 4 7 L3 24 L-3 24 Z"/></g>
+   </g>
+
+   <ellipse cx="700" cy="610" rx="1000" ry="44" style="fill:var(--svg-fog)" filter="url(#soft)" opacity="0.55">
+    <animateTransform attributeName="transform" type="translate" values="50 0; -50 0; 50 0" dur="36s" repeatCount="indefinite"/>
+   </ellipse>
+   <path style="fill:var(--ridge5)" d="M-10 660 L70 620 L150 660 L230 622 L310 660 L390 618 L470 660 L550 624 L630 660 L710 620 L790 660 L870 622 L950 660 L1030 618 L1110 660 L1190 624 L1270 660 L1350 620 L1430 660 L1450 660 L1450 900 L-10 900 Z"/>
+
+   <!-- scope sweep line -->
+   <line x1="0" x2="1440" style="stroke:var(--accent)" stroke-width="2" opacity="0.16">
+    <animate attributeName="y1" values="470;640;470" dur="7s" repeatCount="indefinite"/>
+    <animate attributeName="y2" values="470;640;470" dur="7s" repeatCount="indefinite"/>
+   </line>
+
+   <!-- ===== TARGETING RETICLE (scanning, never locks) ===== -->
+   <g transform="translate(710 398)">
+    <g>
+     <animateTransform attributeName="transform" type="translate" calcMode="spline"
+      values="0 0; 110 44; 24 96; -108 64; -42 -28; 0 0"
+      keyTimes="0;0.22;0.44;0.66;0.84;1"
+      keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
+      dur="22s" repeatCount="indefinite"/>
+
+     <g style="stroke:var(--accent)" fill="none">
+      <!-- rings -->
+      <circle r="150" stroke-width="1.6" opacity="0.55"/>
+      <circle r="160" stroke-width="1" opacity="0.25"/>
+      <!-- crosshair with center gap -->
+      <g stroke-width="2" opacity="0.85">
+       <line x1="-200" y1="0" x2="-34" y2="0"/>
+       <line x1="34" y1="0" x2="200" y2="0"/>
+       <line x1="0" y1="-200" x2="0" y2="-34"/>
+       <line x1="0" y1="34" x2="0" y2="200"/>
+      </g>
+      <circle r="5" stroke-width="1.6" opacity="0.8"/>
+      <!-- mil ticks -->
+      <g stroke-width="2" opacity="0.6">
+       <line x1="-70" y1="-7" x2="-70" y2="7"/><line x1="-130" y1="-7" x2="-130" y2="7"/>
+       <line x1="70" y1="-7" x2="70" y2="7"/><line x1="130" y1="-7" x2="130" y2="7"/>
+       <line x1="-7" y1="-70" x2="7" y2="-70"/><line x1="-7" y1="-130" x2="7" y2="-130"/>
+       <line x1="-7" y1="70" x2="7" y2="70"/><line x1="-7" y1="130" x2="7" y2="130"/>
+      </g>
+      <!-- acquisition brackets (pulsing, never lock) -->
+      <g stroke-width="2.6">
+       <animate attributeName="opacity" values="0.35;1;0.35" dur="1.8s" repeatCount="indefinite"/>
+       <path d="M-115 -90 L-115 -115 L-90 -115"/>
+       <path d="M115 -90 L115 -115 L90 -115"/>
+       <path d="M-115 90 L-115 115 L-90 115"/>
+       <path d="M115 90 L115 115 L90 115"/>
+      </g>
+     </g>
+
+     <!-- HUD readout -->
+     <g font-family="DM Sans, sans-serif" text-anchor="middle">
+      <circle cx="-128" cy="-181" r="6" style="fill:var(--accent)"><animate attributeName="opacity" values="1;0.1;1" dur="1.1s" repeatCount="indefinite"/></circle>
+      <text x="6" y="-174" font-size="22" font-weight="600" letter-spacing="4" style="fill:var(--accent)">MEMINDAI SEKTOR</text>
+      <text x="0" y="200" font-size="25" font-weight="700" letter-spacing="3" style="fill:var(--blood)">TIDAK ADA SASARAN</text>
+     </g>
+    </g>
+   </g>
+
+   <!-- grain -->
+   <rect width="1440" height="900" filter="url(#grain)" opacity="0.04"/>
+  </svg>
+ </div>
+
+ <div class="hero-content">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Hukum &amp; Politik &middot; Analisis Konflik</div>
+  <h1 class="hero-title">
+   <span class="l1">ACEH DAMAI,</span>
+   <span class="l2">PAPUA TIDAK?</span>
+  </h1>
+  <p class="hero-sub">Banyak yang yakin OPM bisa dibantai habis seandainya TNI tak dibatasi HAM. Tapi sejarah perang gerilya berkata lain: bahkan tanpa batasan pun, kekuatan senjata bukan jawaban, dan justru memperpanjang konflik.</p>
+  <div class="hero-meta">
+   <span class="hero-pill accent">Papua</span>
+   <span class="hero-pill">Counterinsurgency</span>
+   <span class="hero-pill">Analisis Struktural</span>
+  </div>
+ </div>
+
+ <div class="scroll-hint" aria-hidden="true"><span>Telusuri</span><span class="scroll-line"></span></div>
+</div>
+
+<main>
+<div class="article-wrap">
+
+ <!-- ===== 01 ===== -->
+ <section class="section reveal">
+  <div class="section-num">01 · Mitos yang Banyak Dipercaya</div>
+  <h2 class="section-title">"Kalau bukan karena HAM, OPM sudah lama dibantai"</h2>
+  <div class="prose">
+   <p>Kalimat itu sering muncul di kolom komentar, grup percakapan, bahkan diskusi serius: andai Tentara Nasional Indonesia tak dibatasi aturan hak asasi manusia, kelompok bersenjata Papua, OPM atau TPNPB, sudah lama dihabisi dengan alutsista canggih yang dimiliki negara. Helikopter serang, drone, satelit, pasukan elite. Soal waktu saja, katanya.</p>
+   <p>Tulisan ini berargumen sebaliknya, dan bukan dengan dalil moral. <strong>Bahkan jika seluruh batasan HAM dicabut, solusi militer murni tetap akan gagal.</strong> Bukan karena tentara kurang kuat atau kurang berani, tapi karena perang melawan pemberontakan gerilya mengikuti logika yang berbeda dari perang konvensional. Logika itu sudah dipelajari, dan dialami kekalahannya, oleh militer-militer terkuat di dunia.</p>
+   <p>Sebelum masuk ke sana, ada satu pertanyaan yang perlu dijawab lebih dulu: mengapa Papua tidak bisa diselesaikan lewat jalan damai seperti Aceh? Karena begitu pintu itu tertutup, negara jatuh ke opsi militer, dan di situlah seluruh masalahnya bermula.</p>
+  </div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 02 ===== -->
+ <section class="section reveal">
+  <div class="section-num">02 · Latar Singkat</div>
+  <h2 class="section-title">Kenapa Papua tak punya "jalan keluar" seperti Aceh</h2>
+  <div class="prose">
+   <p>Aceh adalah bukti bahwa konflik separatis berdarah selama puluhan tahun bisa diakhiri. Gerakan Aceh Merdeka (GAM) dan pemerintah menandatangani MoU Helsinki pada Agustus 2005 dan perang tiga dekade itu benar-benar berhenti. Tapi perdamaian itu bukan hasil keberanian semata, ia lahir dari kombinasi kondisi yang langka, dan hampir tak satu pun terpenuhi di Papua.</p>
+  </div>
+
+  <div class="compare-wrap reveal">
+   <table class="compare-table">
+    <thead>
+     <tr><th class="c-aspect">Faktor</th><th class="c-aceh">Aceh</th><th class="c-papua">Papua</th></tr>
+    </thead>
+    <tbody>
+     <tr><td class="c-aspect">Lawan bicara</td><td class="c-aceh">GAM tunggal, berkomando jelas</td><td class="c-papua">Banyak faksi, sebagian saling bermusuhan</td></tr>
+     <tr><td class="c-aspect">Kohesi sosial</td><td class="c-aceh">Relatif homogen (Melayu-Muslim)</td><td class="c-papua">Ratusan suku, ada rivalitas internal</td></tr>
+     <tr><td class="c-aspect">Tuntutan akhir</td><td class="c-aceh">Bersedia menerima otonomi dalam NKRI</td><td class="c-papua">Mayoritas masih menuntut referendum</td></tr>
+     <tr><td class="c-aspect">Status hukum</td><td class="c-aceh">Bagian RI sejak 1945, tak disengketakan</td><td class="c-papua">Pepera 1969 diterima PBB, dianggap final</td></tr>
+     <tr><td class="c-aspect">Katalis damai</td><td class="c-aceh">Tsunami 2004 + dialog rahasia Jusuf Kalla</td><td class="c-papua">Tidak ada padanannya</td></tr>
+    </tbody>
+   </table>
+  </div>
+
+  <div class="prose">
+   <p>Faktor hukum di baris keempat adalah yang paling menentukan. Hasil Penentuan Pendapat Rakyat (Pepera) 1969 diterima Majelis Umum PBB lewat Resolusi 2504, sehingga secara hukum internasional status Papua dianggap selesai. Ini justru <strong>kebalikan dari Timor Leste</strong>: jajak pendapat Timor 1999 diselenggarakan langsung oleh PBB, yang tak pernah mengakui aneksasi Indonesia, sehingga Timor punya jalur hukum untuk merdeka. Papua tidak. Jalur internasional yang dipakai Timor Leste, secara teknis, tertutup sejak 1969.</p>
+   <p>Karena pintu damai ala Aceh tertutup dan jalur hukum ala Timor juga tertutup, negara cenderung jatuh ke opsi yang tersisa: pendekatan keamanan. <strong>Dan justru di sanalah letak kebuntuannya.</strong></p>
+  </div>
+
+  <div class="note-box reveal">
+   <div class="note-box-label">Catatan Sejarah</div>
+   <div class="note-box-text">Status Pepera 1969 punya dua sisi yang sama-sama benar. <strong>Secara hukum, hasilnya final</strong>, diterima PBB lewat Resolusi 2504 dan ditegaskan Mahkamah Konstitusi (Putusan 35/PUU-XVII/2019). <strong>Namun prosesnya dipersoalkan</strong>: hanya 1.025 perwakilan yang dipilih militer dari sekitar 800.000 penduduk yang memilih lewat musyawarah, bukan satu-orang-satu-suara, hingga dipelesetkan menjadi "Act of No Choice". Tulisan ini menyajikan keduanya tanpa memihak.</div>
+  </div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 03 ===== -->
+ <section class="section reveal">
+  <div class="section-num">03 · Taktik vs Strategi</div>
+  <h2 class="section-title">Menang di setiap baku tembak, kalah perangnya</h2>
+  <div class="prose">
+   <p>Asumsi "superioritas senjata = kemenangan" benar untuk perang konvensional, di mana dua tentara saling berhadapan memperebutkan wilayah. Perang gerilya tidak begitu. Ada prinsip klasik dalam doktrin kontra-pemberontakan: <strong>taktik menguntungkan tentara reguler, tapi strategi menguntungkan gerilyawan.</strong></p>
+   <p>Artinya, TNI bisa memenangkan hampir setiap kontak senjata, pasukannya lebih terlatih, lebih bersenjata, lebih terorganisir. Tapi gerilyawan tidak perlu menang pertempuran. Mereka hanya perlu <em>bertahan cukup lama</em> sampai biaya politik, anggaran, dan kesabaran negara terkuras habis. Mao Zedong, yang merumuskan perang gerilya modern pada 1937, menyebut sumber kekuatan terkaya untuk berperang ada pada massa rakyat. Selama kelompok bersenjata punya dukungan, aktif maupun pasif, dari sebagian penduduk, mereka punya tempat sembunyi, mata-mata, dan logistik yang tak pernah habis.</p>
+   <p>Ini bukan soal seberapa kejam negara mau bertindak. Ini soal bentuk perang yang sedang dihadapi.</p>
+  </div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 04 ===== -->
+ <section class="section reveal">
+  <div class="section-num">04 · Soal Medan</div>
+  <h2 class="section-title">Apache mau menembak apa di balik kanopi hutan?</h2>
+  <div class="prose">
+   <p>Bayangkan skenario yang sering dibayangkan: helikopter serang AH-64 Apache dikerahkan untuk menghabisi kelompok bersenjata. Persoalannya sederhana tapi fatal, <strong>tidak ada target yang bisa ditembak.</strong> Pemberontak bersembunyi di hutan hujan lebat dan lembah pegunungan terjal. Belum ada teknologi yang bisa "melihat" menembus rapatnya kanopi hutan untuk membedakan kombatan dari pohon, atau dari warga biasa. Drone, satelit, sensor termal, semua tumpul tanpa sasaran yang terdeteksi.</p>
+   <p>Kalau ada keraguan bahwa medan bisa mengalahkan teknologi, lihat Afghanistan. Amerika Serikat, pemilik militer terkuat dalam sejarah, menumpahkan sumber daya yang nyaris tak terbayangkan, dan tetap gagal.</p>
+  </div>
+
+  <div class="math-wrap reveal" aria-hidden="true">
+   <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" style="stop-color:var(--accent)" stop-opacity="0.34"/>
+      <stop offset="55%" style="stop-color:var(--accent)" stop-opacity="0.12"/>
+      <stop offset="100%" style="stop-color:var(--accent)" stop-opacity="0"/>
+     </linearGradient>
+    </defs>
+    <!-- detection cone (pulsing scan) -->
+    <polygon points="150,52 92,212 208,212" fill="url(#cone)">
+     <animate attributeName="opacity" values="0.85;1;0.68;0.85" dur="4s" repeatCount="indefinite"/>
+    </polygon>
+    <!-- helicopter (hovering) -->
+    <g transform="translate(150 44)">
+     <g>
+      <animateTransform attributeName="transform" type="translate" dur="7s" repeatCount="indefinite" calcMode="spline"
+       values="0 0; 5 -3; 9 0; 4 3; 0 1; -5 -2; -8 1; -3 3; 0 0"
+       keyTimes="0;0.12;0.25;0.38;0.5;0.62;0.75;0.88;1"
+       keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+      <g style="stroke:var(--svg-heli)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.92">
+       <ellipse cx="0" cy="0" rx="20" ry="7" style="fill:var(--svg-heli);stroke:none"/>
+       <line x1="16" y1="0" x2="46" y2="-3"/>
+       <path d="M46 -9 Q53 -3 46 3"/>
+       <line x1="0" y1="-15" x2="0" y2="-6"/>
+       <line x1="-10" y1="11" x2="-6" y2="4"/>
+       <line x1="10" y1="11" x2="6" y2="4"/>
+       <!-- main rotor: spinning blur -->
+       <ellipse cx="0" cy="-15" rx="30" ry="2.4">
+        <animate attributeName="rx" values="30;31;29;30" dur="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.45;0.95;0.45" dur="0.4s" repeatCount="indefinite"/>
+       </ellipse>
+       <!-- tail rotor: spinning -->
+       <g>
+        <line x1="48" y1="-8" x2="48" y2="4"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 48 -2" to="360 48 -2" dur="0.32s" repeatCount="indefinite"/>
+       </g>
+      </g>
+     </g>
+    </g>
+
+    <!-- back treeline (distant, lighter) -->
+    <path style="fill:var(--ridge3)" d="M-10 205 L20 180 L50 205 L80 182 L110 205 L140 178 L170 205 L200 183 L230 205 L260 180 L290 205 L320 182 L350 205 L380 178 L410 205 L440 183 L470 205 L500 180 L530 205 L560 182 L590 205 L610 205 L610 280 L-10 280 Z"/>
+
+    <!-- mid treeline (denser) -->
+    <path style="fill:var(--ridge4)" d="M-10 228 L15 200 L40 228 L65 202 L90 228 L115 198 L140 228 L165 203 L190 228 L215 200 L240 228 L265 201 L290 228 L315 199 L340 228 L365 202 L390 228 L415 200 L440 228 L465 198 L490 228 L515 203 L540 228 L565 200 L590 228 L610 228 L610 280 L-10 280 Z"/>
+
+    <!-- forest floor -->
+    <rect x="0" y="250" width="600" height="30" style="fill:var(--ridge5)"/>
+
+    <!-- front pines with visible trunks -->
+    <g style="fill:var(--ridge5)">
+     <rect x="105" y="230" width="10" height="28"/>
+     <polygon points="76,236 144,236 110,200"/><polygon points="83,214 137,214 110,182"/><polygon points="91,194 129,194 110,162"/>
+     <rect x="295" y="230" width="10" height="28"/>
+     <polygon points="266,236 334,236 300,200"/><polygon points="273,214 327,214 300,182"/><polygon points="281,194 319,194 300,162"/>
+     <rect x="465" y="230" width="10" height="28"/>
+     <polygon points="436,236 504,236 470,200"/><polygon points="443,214 497,214 470,182"/><polygon points="451,194 489,194 470,162"/>
+    </g>
+
+    <!-- hidden figures among the trees (faint) -->
+    <g style="fill:var(--svg-figure)" opacity="0.5">
+     <g transform="translate(200 230) scale(0.95)"><circle cx="0" cy="0" r="5"/><path d="M-4 7 Q0 5 4 7 L3 24 L-3 24 Z"/></g>
+     <g transform="translate(388 232) scale(0.82)"><circle cx="0" cy="0" r="5"/><path d="M-4 7 Q0 5 4 7 L3 24 L-3 24 Z"/></g>
+    </g>
+   </svg>
+  </div>
+  <div class="math-caption">Sorot pendeteksi buyar tertelan kanopi hutan. Target ada di bawah sana, tapi tak ada teknologi yang sanggup melihatnya.</div>
+
+  <div class="stat-row reveal">
+   <div class="stat-card"><div class="stat-card-num">~5</div><div class="stat-card-label">Triliun dolar AS biaya perang melawan terorisme</div></div>
+   <div class="stat-card"><div class="stat-card-num">17+</div><div class="stat-card-label">Tahun kampanye militer, tetap gagal</div></div>
+   <div class="stat-card"><div class="stat-card-num blood">~7rb</div><div class="stat-card-label">Nyawa tentara AS hilang dalam prosesnya</div></div>
+  </div>
+
+  <div class="prose">
+   <p>Dan itu di medan yang justru <em>lebih terbuka</em> daripada hutan Papua. Jenderal Stanley McChrystal, panglima pasukan AS di Afghanistan, akhirnya mengakui sendiri bahwa pendekatan konvensional tidak akan menang, bahwa menjatuhkan lebih banyak bom tidak akan memberi dampak yang lebih besar. Kemenangan dalam perang seperti ini, katanya, jauh lebih rumit dari sekadar daya tembak.</p>
+  </div>
+
+  <div class="pull-quote reveal">Senjata paling canggih sekalipun tak berguna kalau ia tak punya target yang bisa dilihat. Di hutan Papua, musuh selalu tak terlihat.</div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 05 ===== -->
+ <section class="section reveal">
+  <div class="section-num">05 · Insurgent Math</div>
+  <h2 class="section-title">Bunuh satu, lahir sepuluh</h2>
+  <div class="prose">
+   <p>Inilah inti masalah, dan ia punya nama resmi dalam doktrin militer: <strong>insurgent math</strong> atau "matematika kontra-pemberontakan", dirumuskan McChrystal pada 2009. Dalam matematika biasa, kalau di satu area ada 10 pemberontak lalu 2 dibunuh, sisanya 8. Dalam perang gerilya, hasilnya bisa justru <em>bertambah</em>.</p>
+   <p>Alasannya: setiap orang yang dibunuh punya saudara, anak, ayah, dan teman, yang tidak menganggap orang itu mati karena bersalah. Mereka hanya tahu satu hal: keluarganya dibunuh. Maka mereka pun mengangkat senjata. Kecepatan rekrutmen melampaui kecepatan pembunuhan. Operasi besar-besaran malah memperbanyak musuh.</p>
+  </div>
+
+  <div class="math-wrap reveal" aria-hidden="true">
+   <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+    <!-- the one killed -->
+    <g transform="translate(70 110)">
+     <circle cx="0" cy="-14" r="13" style="fill:var(--blood)"/>
+     <path d="M-11 4 Q0 -6 11 4 L8 48 L-8 48 Z" style="fill:var(--blood)"/>
+     <line x1="-20" y1="-34" x2="20" y2="6" style="stroke:var(--bg)" stroke-width="5" stroke-linecap="round"/>
+     <line x1="20" y1="-34" x2="-20" y2="6" style="stroke:var(--bg)" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <text x="70" y="200" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" style="fill:var(--blood)">1 dibunuh</text>
+
+    <!-- connecting lines -->
+    <g style="stroke:var(--accent)" stroke-width="1.4" opacity="0.55" fill="none">
+     <path d="M110 96 C 250 40, 320 30, 420 30"/>
+     <path d="M110 100 C 250 70, 320 62, 420 62"/>
+     <path d="M110 104 C 250 96, 320 92, 420 92"/>
+     <path d="M110 108 C 250 120, 320 122, 420 122"/>
+     <path d="M110 112 C 250 150, 320 152, 420 152"/>
+     <path d="M110 116 C 250 178, 320 182, 420 182"/>
+    </g>
+
+    <!-- the many born -->
+    <g style="fill:var(--accent)">
+     <g transform="translate(440 30) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(478 30) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(516 30) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(440 92) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(478 92) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(516 92) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(440 154) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(478 154) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+     <g transform="translate(516 154) scale(0.62)"><circle cx="0" cy="-12" r="11"/><path d="M-9 2 Q0 -5 9 2 L7 40 L-7 40 Z"/></g>
+    </g>
+    <text x="492" y="208" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" style="fill:var(--accent)">…lahir lebih banyak</text>
+   </svg>
+  </div>
+  <div class="math-caption">"20 − 1 = lebih dari 20." Logika perang gerilya membalik aritmatika biasa: setiap korban menanam dendam yang melahirkan pemberontak baru.</div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 06 ===== -->
+ <section class="section reveal">
+  <div class="section-num">06 · Ideologi</div>
+  <h2 class="section-title">Yang tak bisa ditembak</h2>
+  <div class="prose">
+   <p>Andai pun secara hipotetis seluruh anggota OPM hari ini berhasil dihabisi, masalahnya tetap tak selesai, karena <strong>ideologinya tidak mati bersama tubuhnya.</strong> Pakar kontra-pemberontakan David Kilcullen menyebut fenomena ini "accidental guerrilla syndrome": operasi militer yang menyeret penduduk biasa menjadi pemberontak yang sebelumnya tak punya niat berperang. Setiap kampung yang digempur, setiap keluarga yang kehilangan, melahirkan kader baru.</p>
+   <p>Komnas HAM Papua merumuskannya dengan jernih: ini konflik laten yang beririsan dengan ideologi. Dan konflik yang beririsan ideologi <strong>tidak bisa diselesaikan dengan pembangunan, apalagi dengan peluru.</strong> Akar yang ditebang akan bertunas kembali, selama tanahnya, yaitu rasa ketidakadilan, masih subur.</p>
+  </div>
+
+  <div class="math-wrap reveal" aria-hidden="true">
+   <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <radialGradient id="torchglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:var(--fire-mid)" stop-opacity="0.55"/>
+      <stop offset="100%" style="stop-color:var(--fire-mid)" stop-opacity="0"/>
+     </radialGradient>
+     <linearGradient id="fire" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" style="stop-color:var(--fire-core)"/>
+      <stop offset="52%" style="stop-color:var(--fire-mid)"/>
+      <stop offset="100%" style="stop-color:var(--fire-deep)"/>
+     </linearGradient>
+    </defs>
+
+    <!-- ground -->
+    <line x1="40" y1="216" x2="560" y2="216" style="stroke:var(--border)" stroke-width="2"/>
+
+    <!-- unlit torches waiting -->
+    <rect x="376" y="168" width="8" height="46" rx="3" style="fill:var(--ridge4)"/>
+    <path d="M368 168 L392 168 L389 174 L371 174 Z" style="fill:var(--ridge3)"/>
+    <rect x="496" y="160" width="9" height="52" rx="3" style="fill:var(--ridge4)"/>
+    <path d="M487 160 L513 160 L510 167 L490 167 Z" style="fill:var(--ridge3)"/>
+
+    <!-- ===== CENTRAL TORCH: always burning (flicker) ===== -->
+    <circle cx="200" cy="118" r="46" fill="url(#torchglow)">
+     <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="0.7;1;0.65;0.85;0.7"/>
+    </circle>
+    <rect x="195" y="150" width="10" height="62" rx="3" style="fill:var(--ridge4)"/>
+    <path d="M186 152 L214 152 L210 160 L190 160 Z" style="fill:var(--ridge3)"/>
+    <g transform="translate(200 152)">
+     <animateTransform attributeName="transform" type="scale" additive="sum" dur="0.8s" repeatCount="indefinite" values="0.97 0.95;1.03 1.05;0.98 0.96;1 1;0.97 0.95"/>
+     <path d="M0 0 C-21 -21 -14 -42 0 -58 C14 -42 21 -21 0 0 Z" fill="url(#fire)" opacity="0.92"/>
+     <path d="M0 -6 C-11 -20 -8 -33 0 -45 C8 -33 11 -20 0 -6 Z" style="fill:var(--fire-core)"/>
+    </g>
+
+    <!-- ===== BULLETS: fly in and strike (loop 6s) ===== -->
+    <g>
+     <animateTransform attributeName="transform" type="translate" dur="6s" repeatCount="indefinite" calcMode="spline"
+       keyTimes="0;0.12;0.14;1" values="-150 0;0 0;0 0;-150 0" keySplines="0.3 0 0.2 1;0 0 1 1;0 0 1 1"/>
+     <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.02;0.12;0.14;1" values="0;1;1;0;0"/>
+     <g style="stroke:var(--blood)" stroke-width="3" stroke-linecap="round">
+      <line x1="150" y1="178" x2="186" y2="178"/>
+      <line x1="146" y1="186" x2="186" y2="186"/>
+      <line x1="152" y1="194" x2="186" y2="194"/>
+     </g>
+     <g style="fill:var(--blood)">
+      <circle cx="190" cy="178" r="3.2"/><circle cx="190" cy="186" r="3.2"/><circle cx="190" cy="194" r="3.2"/>
+     </g>
+    </g>
+
+    <!-- impact spark -->
+    <g style="stroke:var(--blood)" stroke-width="2" stroke-linecap="round">
+     <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.1;0.12;0.2;1" values="0;0;1;0;0"/>
+     <line x1="190" y1="182" x2="200" y2="174"/>
+     <line x1="192" y1="188" x2="206" y2="188"/>
+     <line x1="190" y1="194" x2="200" y2="202"/>
+     <line x1="184" y1="184" x2="176" y2="178"/>
+    </g>
+
+    <!-- embers flying out to ignite the others -->
+    <g style="fill:var(--fire-mid)">
+     <circle cx="200" cy="110" r="2.8">
+      <animateTransform attributeName="transform" type="translate" dur="6s" repeatCount="indefinite" keyTimes="0;0.15;0.42;1" values="0 0;0 0;180 42;180 42"/>
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.15;0.19;0.4;0.44;1" values="0;0;1;1;0;0"/>
+     </circle>
+     <circle cx="200" cy="110" r="2.2">
+      <animateTransform attributeName="transform" type="translate" dur="6s" repeatCount="indefinite" keyTimes="0;0.18;0.45;1" values="0 0;0 0;176 38;176 38"/>
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.18;0.22;0.43;0.47;1" values="0;0;1;1;0;0"/>
+     </circle>
+     <circle cx="200" cy="108" r="2.8">
+      <animateTransform attributeName="transform" type="translate" dur="6s" repeatCount="indefinite" keyTimes="0;0.16;0.46;1" values="0 0;0 0;300 20;300 20"/>
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.16;0.2;0.44;0.48;1" values="0;0;1;1;0;0"/>
+     </circle>
+     <circle cx="200" cy="108" r="2.2">
+      <animateTransform attributeName="transform" type="translate" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.5;1" values="0 0;0 0;306 24;306 24"/>
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.24;0.48;0.52;1" values="0;0;1;1;0;0"/>
+     </circle>
+    </g>
+
+    <!-- R1 ignites -->
+    <circle cx="380" cy="150" r="28" fill="url(#torchglow)">
+     <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.34;0.5;0.9;1" values="0;0;0.7;0.7;0"/>
+    </circle>
+    <g transform="translate(380 168)">
+     <animateTransform attributeName="transform" type="scale" additive="sum" dur="6s" repeatCount="indefinite" keyTimes="0;0.34;0.52;0.9;1" values="0;0;1;1;0"/>
+     <path d="M0 0 C-13 -14 -9 -28 0 -40 C9 -28 13 -14 0 0 Z" fill="url(#fire)"/>
+    </g>
+
+    <!-- R2 ignites -->
+    <circle cx="500" cy="130" r="38" fill="url(#torchglow)">
+     <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.42;0.58;0.9;1" values="0;0;0.85;0.85;0"/>
+    </circle>
+    <g transform="translate(500 160)">
+     <animateTransform attributeName="transform" type="scale" additive="sum" dur="6s" repeatCount="indefinite" keyTimes="0;0.42;0.6;0.9;1" values="0;0;1;1;0"/>
+     <path d="M0 0 C-18 -19 -12 -40 0 -56 C13 -40 18 -19 0 0 Z" fill="url(#fire)" opacity="0.92"/>
+     <path d="M0 -6 C-10 -18 -7 -30 0 -42 C7 -30 10 -18 0 -6 Z" style="fill:var(--fire-core)"/>
+    </g>
+
+    <!-- labels -->
+    <text x="200" y="240" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" letter-spacing="0.5" style="fill:var(--blood)">TUBUH DITEMBAK</text>
+    <text x="566" y="36" text-anchor="end" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" letter-spacing="0.5" style="fill:var(--accent)">GAGASAN TAK BISA DITEMBAK</text>
+    <text x="566" y="53" text-anchor="end" font-family="DM Sans, sans-serif" font-size="12" style="fill:var(--text-muted)">ia justru memercik &amp; menyebar</text>
+   </svg>
+  </div>
+  <div class="math-caption">Kamu tidak bisa menembak api. Tubuh bisa dilumpuhkan, tapi gagasan, seperti bara, justru memercik dan menyalakan obor-obor baru.</div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 07 ===== -->
+ <section class="section reveal">
+  <div class="section-num">07 · Korban Sipil</div>
+  <h2 class="section-title">Berbaur dengan warga, dan bahan bakar yang terus mengalir</h2>
+  <div class="prose">
+   <p>Karena pemberontak tak berseragam dan membaur dengan penduduk, penggunaan alutsista berat justru menaikkan risiko korban sipil, dan tiap korban sipil langsung memberi makan "insurgent math" tadi. Realitas di lapangan sudah memperlihatkannya.</p>
+  </div>
+
+  <div class="stat-block reveal">
+   <div class="stat-number">100.000+</div>
+   <div class="stat-label">Warga Papua mengungsi akibat konflik bersenjata, mayoritas warga asli Papua</div>
+   <div class="stat-source">Human Rights Monitor, 2025</div>
+  </div>
+
+  <div class="prose">
+   <p>Penting dicatat, supaya jujur, bahwa <strong>kekerasan ini datang dari dua arah.</strong> Kelompok bersenjata TPNPB berulang kali menyerang warga sipil: guru, tenaga kesehatan, pekerja, dan pendatang, termasuk sesama orang Papua, sering dengan dalih "mata-mata" yang tak terbukti. Di sisi lain, Komnas HAM juga mendokumentasikan penyiksaan warga sipil oleh oknum aparat. Ketua Komnas HAM menegaskan: serangan terhadap warga sipil, oleh aktor negara maupun non-negara, sama-sama melanggar hukum HAM dan humaniter internasional.</p>
+   <p>Yang memperburuk: gambarannya sering kabur. Kalau korban sipil jatuh akibat aparat, korban kerap diklaim sebagai anggota TPNPB; kalau akibat TPNPB, korban diklaim sebagai mata-mata. Tanpa verifikasi independen dan dengan akses jurnalis yang dibatasi, kebenaran sulit ditegakkan, dan kedua pihak bebas berpropaganda. Yang pasti, <strong>setiap kampung yang tergusur menanam dendam baru</strong>, dan lingkaran itu berputar kembali ke awal.</p>
+  </div>
+
+  <div class="math-wrap reveal" aria-hidden="true">
+   <svg viewBox="0 0 600 372" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <marker id="arw" markerWidth="10" markerHeight="10" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" style="fill:var(--accent)"/>
+     </marker>
+    </defs>
+    <!-- clockwise arrows -->
+    <g style="stroke:var(--accent)" stroke-width="2.6" fill="none">
+     <path d="M335.5 75.6 A115 115 0 0 1 409.4 149.5" marker-end="url(#arw)"/>
+     <path d="M409.4 220.5 A115 115 0 0 1 335.5 294.4" marker-end="url(#arw)"/>
+     <path d="M264.5 294.4 A115 115 0 0 1 190.6 220.5" marker-end="url(#arw)"/>
+     <path d="M190.6 149.5 A115 115 0 0 1 264.5 75.6" marker-end="url(#arw)"/>
+    </g>
+    <!-- nodes -->
+    <g>
+     <circle cx="300" cy="70" r="30" style="fill:var(--surface2);stroke:var(--accent)" stroke-width="2"/>
+     <text x="300" y="80" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="30" style="fill:var(--accent)">1</text>
+     <text x="300" y="24" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" style="fill:var(--text)">Operasi militer</text>
+    </g>
+    <g>
+     <circle cx="415" cy="185" r="30" style="fill:var(--surface2);stroke:var(--accent)" stroke-width="2"/>
+     <text x="415" y="195" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="30" style="fill:var(--accent)">2</text>
+     <text x="452" y="181" text-anchor="start" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" style="fill:var(--text)">Korban</text>
+     <text x="452" y="198" text-anchor="start" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" style="fill:var(--text)">sipil</text>
+    </g>
+    <g>
+     <circle cx="300" cy="300" r="30" style="fill:var(--surface2);stroke:var(--accent)" stroke-width="2"/>
+     <text x="300" y="310" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="30" style="fill:var(--accent)">3</text>
+     <text x="300" y="350" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" style="fill:var(--text)">Dendam &amp; kehilangan</text>
+    </g>
+    <g>
+     <circle cx="185" cy="185" r="30" style="fill:var(--surface2);stroke:var(--accent)" stroke-width="2"/>
+     <text x="185" y="195" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="30" style="fill:var(--accent)">4</text>
+     <text x="148" y="181" text-anchor="end" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" style="fill:var(--text)">Pemberontak</text>
+     <text x="148" y="198" text-anchor="end" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" style="fill:var(--text)">baru</text>
+    </g>
+    <!-- center label -->
+    <text x="300" y="180" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="2" style="fill:var(--text-dim)">SIKLUS</text>
+    <text x="300" y="196" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="2" style="fill:var(--text-dim)">KEKERASAN</text>
+   </svg>
+  </div>
+  <div class="math-caption">Bukan garis lurus menuju kemenangan, melainkan lingkaran yang berputar, tiap putaran memperbanyak musuh dan kembali ke titik awal.</div>
+ </section>
+
+ <div class="fog-div reveal" aria-hidden="true">
+  <div class="fog-line"></div>
+  <div class="fog-glyph"><svg width="48" height="20" viewBox="0 0 48 20"><path d="M2 17 L12 8 L20 13 L30 5 L40 12 L46 8" fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/></svg></div>
+  <div class="fog-line rev"></div>
+ </div>
+
+ <!-- ===== 08 ===== -->
+ <section class="section reveal">
+  <div class="section-num">08 · Jalan Keluar</div>
+  <h2 class="section-title">Kalau peluru gagal, lalu apa?</h2>
+  <div class="prose">
+   <p>Kabar baiknya, sudah ada kerangka penyelesaian buatan Indonesia sendiri yang kredibel: <strong>Papua Road Map (PRM)</strong>, hasil riset bertahun-tahun tim LIPI (kini BRIN) yang dipimpin Muridan S. Widjojo bersama Adriana Elisabeth dan Cahyo Pamungkas, terbit 2009. PRM secara eksplisit menolak pendekatan yang berdimensi fisik dan kekerasan, dan memetakan empat akar masalah beserta jawabannya.</p>
+  </div>
+
+  <div class="roadmap reveal">
+   <div class="rm-card"><div class="rm-num">01</div><div class="rm-title">Marjinalisasi &amp; diskriminasi</div><div class="rm-desc">Penyingkiran orang asli Papua sejak 1970. Jawaban: rekognisi dan pemberdayaan OAP.</div></div>
+   <div class="rm-card"><div class="rm-num">02</div><div class="rm-title">Kegagalan pembangunan</div><div class="rm-desc">Pendidikan, kesehatan, ekonomi rakyat. Jawaban: paradigma pembangunan baru yang sampai ke kampung.</div></div>
+   <div class="rm-card"><div class="rm-num">03</div><div class="rm-title">Kontradiksi sejarah &amp; status politik</div><div class="rm-desc">Sengketa seputar Pepera. Jawaban: dialog, seperti yang berhasil di Aceh.</div></div>
+   <div class="rm-card"><div class="rm-num">04</div><div class="rm-title">Kekerasan &amp; pelanggaran HAM</div><div class="rm-desc">Belum ada yang diselesaikan secara adil. Jawaban: rekonsiliasi dan pengadilan HAM.</div></div>
+  </div>
+
+  <div class="prose">
+   <p>LIPI menegaskan satu hal yang menyambung seluruh analisis di atas: penyelesaian hanya bisa lewat dialog, <strong>tidak bisa lewat intervensi kekerasan.</strong> Tapi tanggung jawab itu tak hanya di tangan negara, warga negara biasa pun punya peran yang nyata.</p>
+  </div>
+
+  <div class="actor-block reveal">
+   <div class="actor-head"><span class="actor-tag">Peran Pemerintah</span><span class="actor-line"></span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Buka dialog sungguhan</strong>, bukan sekadar membangun jalan. Infrastrukturnya sudah ada: Jaringan Damai Papua, serta dorongan "jeda kemanusiaan" Komnas HAM yang melibatkan korban, TNI/Polri, TPNPB, dan ULMWP sebagai sayap politik yang bisa diajak bicara.</span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Doktrin yang benar: rebut rakyat, bukan bunuh musuh.</strong> Inti kontra-pemberontakan adalah memenangkan penduduk, lindungi warga, hentikan pendudukan sekolah dan gereja sebagai pos militer.</span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Rekognisi &amp; pembangunan yang nyata sampai ke OAP</strong>, bukan dana otsus yang dikuasai elite. Ironinya, dana otsus triliunan mengalir, tapi Papua tetap termiskin.</span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Keadilan dua arah</strong>, pengadilan HAM untuk kekerasan negara maupun kelompok bersenjata. Tanpa akuntabilitas, siklus dendam tak pernah putus.</span></div>
+  </div>
+
+  <div class="actor-block reveal">
+   <div class="actor-head"><span class="actor-tag">Peran Warga Negara</span><span class="actor-line"></span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Lawan rasisme &amp; stereotip terhadap orang Papua.</strong> Diskriminasi sehari-hari adalah bahan bakar, kerusuhan besar 2019 dipicu rasisme di Surabaya. Cara kita memperlakukan orang Papua ikut menentukan persamaan ini.</span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Literasi media &amp; tolak hoaks.</strong> Ingat masalah "kabar kabur", kedua pihak saling klaim. Jangan ikut menyebar narasi dehumanisasi atau klaim sepihak tanpa verifikasi.</span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Memanusiakan, bukan meng-"liyan"-kan.</strong> Lihat orang Papua sebagai sesama warga negara. Dukung pertukaran pendidikan dan budaya, beasiswa, serta akses ekonomi untuk OAP.</span></div>
+   <div class="action-item"><span class="action-dot"></span><span class="action-text"><strong>Dukung kebebasan pers di Papua &amp; tekanan demokratis.</strong> Tanpa akses jurnalis, kebenaran tak terverifikasi. Dorong wakil rakyat dan pemerintah memilih dialog ketimbang militerisasi.</span></div>
+  </div>
+
+  <div class="note-box reveal">
+   <div class="note-box-label">Catatan Realisme</div>
+   <div class="note-box-text">Jalan ini sulit. Papua Road Map sempat dicap "klise" dan dialog mentok bertahun-tahun, <strong>bukan karena gagasannya salah, tapi karena kemauan politik dan rasa saling percaya yang tak kunjung ada.</strong> Tetap, inilah satu-satunya jalan yang secara struktural masuk akal, karena, seperti dibuktikan sepanjang tulisan ini, peluru justru memperpanjang masalah.</div>
+  </div>
+ </section>
+
+ <!-- ===== 09 ===== -->
+ <section class="section reveal">
+  <div class="closing">
+   <div class="closing-title">PELURU MEMPERPANJANG,<br>BUKAN MENYELESAIKAN</div>
+   <div class="closing-body">Pertanyaannya bukan apakah TNI cukup kuat, tentu kuat. Pertanyaannya apakah kekuatan itu bisa menyelesaikan jenis perang ini. Sejarah, matematika, dan medan menjawab serempak: tidak. Yang tersisa adalah pekerjaan yang jauh lebih sulit daripada menembak, yaitu mendengar, mengakui, dan berdamai.</div>
+  </div>
+
+  <div class="sources reveal">
+   <div class="sources-title">Sumber &amp; Rujukan</div>
+   <div class="source-item">McChrystal, S. (2009). <em>COIN Mathematics</em>, pidato di International Institute for Strategic Studies, 1 Oktober 2009.</div>
+   <div class="source-item">Kilcullen, D. (2009). <em>The Accidental Guerrilla</em>. Oxford University Press.</div>
+   <div class="source-item">Widjojo, M. S., Elisabeth, A., Pamungkas, C., dkk. (2009). <em>Papua Road Map</em>. LIPI.</div>
+   <div class="source-item">Tim LIPI (2011). <em>Empat Akar Masalah Konflik Papua, Penyelesaian hanya dengan dialog.</em></div>
+   <div class="source-item">Human Rights Monitor (2025). <em>Annual Report &amp; IDP Updates: Human Rights and Conflict in West Papua.</em></div>
+   <div class="source-item">Jubi (2025). <em>Kabar Kabur Konflik Bersenjata di Tanah Papua.</em></div>
+   <div class="source-item">Tempo (2025). <em>20 Tahun Perjanjian Helsinki: Wawancara Jusuf Kalla.</em></div>
+   <div class="source-item">Hukumonline (2021). <em>Self-Determination Papua, Pepera 1969, dan Resolusi MU PBB 2504.</em></div>
+   <div class="source-item">Mahkamah Konstitusi RI. <em>Putusan No. 35/PUU-XVII/2019.</em></div>
+   <div class="source-item">Komnas HAM Perwakilan Papua (2025). <em>Pernyataan dialog kemanusiaan &amp; serangan terhadap warga sipil.</em></div>
+  </div>
+ </section>
+
+</div>
+</main>
+
+<script>
+ /* THEME + HEADER/FOOTER (KBDI standard) */
+ const savedTheme = localStorage.getItem('kbdi-theme');
+ if (savedTheme === 'light') document.documentElement.classList.add('light');
+
+ fetch('https://edukbdi.github.io/header.html')
+  .then(r => r.text())
+  .then(html => {
+   document.body.insertAdjacentHTML('afterbegin', html);
+   const header = document.getElementById('kbdi-header');
+   if (savedTheme === 'light') header.classList.add('kbdi-light');
+   document.getElementById('kbdiThemeToggle').addEventListener('click', function() {
+    const isLight = document.documentElement.classList.toggle('light');
+    header.classList.toggle('kbdi-light', isLight);
+    localStorage.setItem('kbdi-theme', isLight ? 'light' : 'dark');
+    const footer = document.getElementById('kbdi-footer');
+    if (footer) footer.classList.toggle('kbdi-light', isLight);
+   });
+  });
+
+ fetch('https://edukbdi.github.io/footer.html')
+  .then(r => r.text())
+  .then(html => {
+   document.body.insertAdjacentHTML('beforeend', html);
+   const footer = document.getElementById('kbdi-footer');
+   if (footer && savedTheme === 'light') footer.classList.add('kbdi-light');
+  });
+
+ /* SCROLL REVEAL */
+ const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+ }, { threshold: 0.07, rootMargin: '0px 0px -36px 0px' });
+ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+ /* RESPECT REDUCED MOTION: pause SVG (SMIL) animations */
+ if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('svg').forEach(s => { if (s.pauseAnimations) s.pauseAnimations(); });
+ }
+</script>
+</body>
+</html>
